@@ -4,121 +4,103 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Life Choices — The Bias Engine</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=Karla:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="bg"></div>
-<canvas id="particles"></canvas>
-<div class="orb orb1" id="orb1"></div>
-<div class="orb orb2" id="orb2"></div>
-<div class="orb orb3" id="orb3"></div>
+<canvas id="scene-canvas"></canvas>
 <div id="grain"></div>
-
-<!-- Floating Stickers -->
-<div class="sticker sticker-1">🎮</div>
-<div class="sticker sticker-2">⚡</div>
-<div class="sticker sticker-3">🕹️</div>
-<div class="sticker sticker-4">🏆</div>
-<div class="sticker sticker-5">🎯</div>
-<div class="sticker sticker-6">💎</div>
-<div class="sticker sticker-7">🔥</div>
-<div class="sticker sticker-8">🌟</div>
+<div id="scanlines"></div>
 
 <div id="app">
 
-  <header class="site-header">
-    <h1>Life <span>Choices</span></h1>
-    <p>Same actions · Different outcomes · The bias engine</p>
-    <div class="header-rank">
-      <div class="rank-dot"></div>
-      PLAYER SELECT — NEW GAME
-    </div>
-  </header>
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="masthead-vol">Vol. I · The Bias Engine · Est. 2025</div>
+    <h1>LIFE <em>CHOICES</em></h1>
+    <div class="masthead-sub">Same actions · <span>Different outcomes</span> · The system is rigged</div>
+  </div>
 
-  <!-- Mode Toggle -->
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-inner">
+      <span>BACKGROUND DETERMINES DESTINY</span>
+      <span>PRIVILEGE COMPOUNDS AT EVERY STEP</span>
+      <span>SAME EFFORT · DIFFERENT DOORS</span>
+      <span>THE SYSTEM REWARDS ORIGIN NOT AMBITION</span>
+      <span>BACKGROUND DETERMINES DESTINY</span>
+      <span>PRIVILEGE COMPOUNDS AT EVERY STEP</span>
+      <span>SAME EFFORT · DIFFERENT DOORS</span>
+      <span>THE SYSTEM REWARDS ORIGIN NOT AMBITION</span>
+    </div>
+  </div>
+
+  <!-- MODE -->
   <div id="mode-wrap">
     <button class="mode-btn active" id="btn-single" onclick="setMode('single')">⚡ Solo Journey</button>
-    <button class="mode-btn" id="btn-dual" onclick="setMode('dual')">⚔️ Compare Two Lives</button>
+    <button class="mode-btn" id="btn-dual" onclick="setMode('dual')">⚖️ Compare Two Lives</button>
   </div>
 
-  <!-- Dual Mode: Character Tabs -->
-  <div id="char-tabs" style="display:none; flex-direction:row;">
+  <!-- CHAR TABS -->
+  <div id="char-tabs" style="display:none;flex-direction:row;">
     <div class="char-tab active-tab" id="tab-a">
-      <div class="ct-dot" style="background:#bf00ff; box-shadow:0 0 8px #bf00ff;"></div>
-      <div>
-        <div class="ct-name">PLAYER_A</div>
-        <div class="ct-steps" id="tab-a-steps">0 choices</div>
-      </div>
+      <div class="ct-dot" style="background:var(--neon-y);box-shadow:0 0 6px var(--neon-y)"></div>
+      <div><div class="ct-name">Character A</div><div class="ct-steps" id="tab-a-steps">0 / 9</div></div>
     </div>
     <div class="char-tab" id="tab-b">
-      <div class="ct-dot" style="background:#ff6b00; box-shadow:0 0 8px #ff6b00;"></div>
-      <div>
-        <div class="ct-name">PLAYER_B</div>
-        <div class="ct-steps" id="tab-b-steps">0 choices</div>
-      </div>
+      <div class="ct-dot" style="background:var(--neon-r);box-shadow:0 0 6px var(--neon-r)"></div>
+      <div><div class="ct-name">Character B</div><div class="ct-steps" id="tab-b-steps">0 / 9</div></div>
     </div>
   </div>
 
-  <!-- Theme Badge -->
-  <div id="theme-badge">
-    <div class="tbdot" id="tbdot"></div>
-    <span id="tbtext">Choose Your Story</span>
+  <!-- CHAPTER MARQUEE -->
+  <div id="chapter-marquee">
+    <div class="cmarq-label" id="cmarq-label">CHAPTER 0</div>
+    <div class="cmarq-text" id="cmarq-text">Your universe awaits</div>
+    <div class="cmarq-dot" id="cmarq-dot" style="background:var(--neon-y)"></div>
   </div>
 
-  <!-- Progress Bar -->
+  <!-- PROGRESS — 9 STEPS FIXED -->
   <div id="progress-wrap">
-    <div class="pseg" id="p0"></div>
-    <div class="pseg" id="p1"></div>
-    <div class="pseg" id="p2"></div>
-    <div class="pseg" id="p3"></div>
-    <div class="pseg" id="p4"></div>
-    <div class="pseg" id="p5"></div>
-    <div class="pseg" id="p6"></div>
+    <div class="prog-label">Progress</div>
+    <div class="prog-steps" id="prog-steps"></div>
+    <div class="prog-counter" id="prog-counter">0 / 9</div>
   </div>
 
-  <!-- BIAS METER — shown for non-privileged backgrounds -->
-  <div id="bias-meter-wrap">
-    <div class="bm-header">
-      <div class="bm-label">⚠ SYSTEMIC BIAS ACCUMULATION</div>
-      <div class="bm-value"><span id="bias-val">0</span> / 100</div>
-    </div>
-    <div class="bm-track">
-      <div id="bias-fill" style="width:0%"></div>
-    </div>
-    <div class="bm-note">Same choices cost more. Same results take longer. This is the system.</div>
-  </div>
-
-  <!-- Choice Trail -->
+  <!-- TRAIL -->
   <div id="trail-wrap"></div>
 
-  <!-- Undo Button -->
+  <!-- UNDO -->
   <button id="back-btn" onclick="goBack()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M19 12H5M12 5l-7 7 7 7"/>
-    </svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     UNDO LAST CHOICE
   </button>
 
-  <!-- Question Card -->
+  <!-- QUESTION CARD -->
   <div class="card" id="qcard">
     <div class="phase-label" id="qlabel">Begin</div>
     <span class="phase-icon" id="qicon">🌱</span>
     <div class="q-title" id="qtitle">Who are you?</div>
-    <div class="q-sub" id="qsub">Your starting point shapes the entire journey ahead.</div>
+    <div class="q-sub" id="qsub">Your starting point shapes everything that follows.</div>
   </div>
 
   <div class="connector" id="connector"></div>
 
-  <!-- Choice Cards -->
+  <!-- CHOICES -->
   <div id="choices-wrap"></div>
 
-  <div class="scroll-hint" id="scroll-hint">[ scroll down to see choices ↓ ]</div>
+  <!-- SUGGESTION BAR -->
+  <div id="suggestion-bar">
+    <div class="sug-icon">💡</div>
+    <div class="sug-text" id="sug-text"></div>
+  </div>
 
-  <!-- Single Player Final Screen -->
+  <div class="scroll-hint" id="scroll-hint">scroll to see all choices ↓</div>
+
+  <!-- FINAL -->
   <div id="final-wrap"></div>
-
-  <!-- Dual Player Comparison Screen -->
+  <!-- COMPARE -->
   <div id="compare-wrap"></div>
 
 </div>
