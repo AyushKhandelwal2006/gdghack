@@ -8,7 +8,6 @@
 </head>
 <body>
 
-<!-- Dynamic Background Layers -->
 <div id="bg"></div>
 <canvas id="particles"></canvas>
 <div class="orb orb1" id="orb1"></div>
@@ -76,6 +75,18 @@
     <div class="pseg" id="p4"></div>
     <div class="pseg" id="p5"></div>
     <div class="pseg" id="p6"></div>
+  </div>
+
+  <!-- BIAS METER — shown for non-privileged backgrounds -->
+  <div id="bias-meter-wrap">
+    <div class="bm-header">
+      <div class="bm-label">⚠ SYSTEMIC BIAS ACCUMULATION</div>
+      <div class="bm-value"><span id="bias-val">0</span> / 100</div>
+    </div>
+    <div class="bm-track">
+      <div id="bias-fill" style="width:0%"></div>
+    </div>
+    <div class="bm-note">Same choices cost more. Same results take longer. This is the system.</div>
   </div>
 
   <!-- Choice Trail -->
