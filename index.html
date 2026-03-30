@@ -16,32 +16,46 @@
 <div class="orb orb3" id="orb3"></div>
 <div id="grain"></div>
 
+<!-- Floating Stickers -->
+<div class="sticker sticker-1">🎮</div>
+<div class="sticker sticker-2">⚡</div>
+<div class="sticker sticker-3">🕹️</div>
+<div class="sticker sticker-4">🏆</div>
+<div class="sticker sticker-5">🎯</div>
+<div class="sticker sticker-6">💎</div>
+<div class="sticker sticker-7">🔥</div>
+<div class="sticker sticker-8">🌟</div>
+
 <div id="app">
 
   <header class="site-header">
     <h1>Life <span>Choices</span></h1>
     <p>Same actions · Different outcomes · The bias engine</p>
+    <div class="header-rank">
+      <div class="rank-dot"></div>
+      PLAYER SELECT — NEW GAME
+    </div>
   </header>
 
   <!-- Mode Toggle -->
   <div id="mode-wrap">
     <button class="mode-btn active" id="btn-single" onclick="setMode('single')">⚡ Solo Journey</button>
-    <button class="mode-btn" id="btn-dual" onclick="setMode('dual')">⚖️ Compare Two Lives</button>
+    <button class="mode-btn" id="btn-dual" onclick="setMode('dual')">⚔️ Compare Two Lives</button>
   </div>
 
   <!-- Dual Mode: Character Tabs -->
   <div id="char-tabs" style="display:none; flex-direction:row;">
     <div class="char-tab active-tab" id="tab-a">
-      <div class="ct-dot" style="background:#a78bfa;"></div>
+      <div class="ct-dot" style="background:#bf00ff; box-shadow:0 0 8px #bf00ff;"></div>
       <div>
-        <div class="ct-name">Character A</div>
+        <div class="ct-name">PLAYER_A</div>
         <div class="ct-steps" id="tab-a-steps">0 choices</div>
       </div>
     </div>
     <div class="char-tab" id="tab-b">
-      <div class="ct-dot" style="background:#fb923c;"></div>
+      <div class="ct-dot" style="background:#ff6b00; box-shadow:0 0 8px #ff6b00;"></div>
       <div>
-        <div class="ct-name">Character B</div>
+        <div class="ct-name">PLAYER_B</div>
         <div class="ct-steps" id="tab-b-steps">0 choices</div>
       </div>
     </div>
@@ -72,7 +86,7 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M19 12H5M12 5l-7 7 7 7"/>
     </svg>
-    Undo last choice
+    UNDO LAST CHOICE
   </button>
 
   <!-- Question Card -->
@@ -88,7 +102,7 @@
   <!-- Choice Cards -->
   <div id="choices-wrap"></div>
 
-  <div class="scroll-hint" id="scroll-hint">scroll down to see choices ↓</div>
+  <div class="scroll-hint" id="scroll-hint">[ scroll down to see choices ↓ ]</div>
 
   <!-- Single Player Final Screen -->
   <div id="final-wrap"></div>
